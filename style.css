@@ -1,0 +1,151 @@
+@font-face {
+    font-family: Satisfy;
+    src: url(assets/fonts/Satisfy.ttf);
+}
+@font-face {
+    font-family: Sniglet;
+    src: url(assets/fonts/Sniglet.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html{
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(rgb(87, 250, 87), rgb(42, 155, 42));
+}
+
+.page-title {
+    color: rgb(6, 51, 6);
+    font-family: Satisfy, serif;
+    font-weight: 150;
+    text-align: center;
+    font-size: 5.5em;
+    margin: 0;
+}
+
+.game-info {
+    color: rgb(29, 65, 29);
+    font-size: 2.5em;
+    font-family: Sniglet;
+}
+.game-info-container {
+    grid-column: 1/ -1;
+    display: flex;
+    justify-content: space-between;
+}
+.game-container {
+    margin: 50px, auto;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    justify-content: center;
+    perspective: 500px;
+       
+}
+
+.card {
+    position: relative;
+    height: 175px;
+    width: 128px;
+}
+
+
+.card-face {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border-width: 3px;
+    border-style: solid;
+    overflow: hidden;
+}
+
+.card-back {
+    background-color: lightseagreen;
+    transform: rotateY(0);
+    transition: background-color;
+    transition: border-width 50ms ease-in-out;
+}
+
+.card.visible .card-back {
+    transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+    transform: rotateY(0);
+}
+
+
+.fruits {
+    width: 100px;
+   transition: width 100ms ease-in-out;
+}
+
+.card-front {
+    transform: rotateY(-180deg);
+    background-color: aliceblue;
+}
+
+.card-back:hover {
+    border-width: 4px;
+    background-color: rgb(10, 173, 165);
+}
+
+.card-face:hover .fruits {
+    width: 110px;
+}
+
+
+.card-value {
+    width: 100px;
+    transition: width 100ms ease-in-out;
+}
+
+.card-face:hover .card-value {
+    width: 110px;
+}
+
+.overlay-text {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: rgb(52, 248, 127);
+    font-family: Sniglet;
+}
+
+.overlay-text-small {
+    font-size: .3em;
+}
+
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0,0,0,0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0,0,0,.8);
+        font-size: 9em;
+    }
+}
